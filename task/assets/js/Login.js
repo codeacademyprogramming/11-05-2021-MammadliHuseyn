@@ -8,14 +8,6 @@
     }
 })();
 
-//SessionStorage creator
-const createSessionStorage = (user) => {
-    let session_user = {
-        username: user.username,
-        email: user.email
-    };
-    sessionStorage.setItem("session_user", JSON.stringify(session_user));
-}
 
 //Admin username password object for login
 const admin = {
@@ -43,9 +35,6 @@ $('#form-login').submit((e) => {
 
         //add token to cookie
         createCookie("cookie_user", "supersecuretoken", 1);
-
-        //add user session to sessionStorage
-        createSessionStorage(admin);
 
         document.location.href = "./index.html";
     }

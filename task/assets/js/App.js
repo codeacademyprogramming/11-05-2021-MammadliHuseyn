@@ -60,6 +60,8 @@ async function main() {
    setDataToTable(data, getCurrentLang());
    changeTableHeadingsLang(getCurrentLang());
    toggleThemeMode(getCurrentThemeMode());
+   await createSessionStorage();
+   getUserFromSession();
 
    document.getElementById("check-active-loan").addEventListener('change', () => filterTable(data, getCurrentLang()));
    document.getElementById("search-input").addEventListener('keyup', () => filterTable(data, getCurrentLang()));
@@ -243,6 +245,7 @@ let toggleThemeMode = (curTheme, prevTheme, target = $("#btn-change-mode")[0]) =
    $(table).removeClass(`table-${prevTheme}`).addClass(`table-${curTheme}`);
    $(modalTable).removeClass(`table-${prevTheme}`).addClass(`table-${curTheme}`);
    $(".navbar").removeClass(`navbar-${prevTheme}`).addClass(`navbar-${curTheme}`);
+   $("#user-name").removeClass(`text-${curTheme}`).addClass(`text-${prevTheme}`);
 
    let elements = $(`.bg-${prevTheme}`);
    $(elements).each((index, element) => {
@@ -262,5 +265,30 @@ let setThemeToLocalStorage = (target) => {
    toggleThemeMode(getCurrentThemeMode(), tmpPrevTheme, target);
 }
 
+//Get user from SessionStorage
+let getUserFromSession = () => {
+   let data = JSON.parse(sessionStorage.getItem("session_user"));
+   data = data[0];
+   const name = `${data.name.title} ${data.name.first} ${data.name.last}`;
+   $("#logined-user>#user-img").attr("src", data.picture.thumbnail);
+   $("#logined-user>#user-name").text(name);
+}
+
+//Set so session user get from fetch
+const setSession = (user) => {
+   sessionStorage.setItem("session_user", JSON.stringify(user.results));
+   console.log("setted")
+}
+
+//SessionStorage creator
+const createSessionStorage = async () => {
+   if (!sessionStorage.getItem("session_user")) {
+      await fetch("https://randomuser.me/api/")
+         .then(data => data.json())
+         .then(setSession);
+   }
+}
+
+createSessionStorage();
 setLocalStorage();
 main();

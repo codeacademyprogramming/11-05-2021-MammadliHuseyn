@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Credit score evaluation</title>
+</head>
+
+<body class="d-none">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./index.html">Credit score evalution</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+
+                    <div id="logined-user">
+                        <img src="assets/img/loading.gif" id="user-img">
+                        <span class="fw-bold text-light" id="user-name"></span>
+                    </div>
+
+                    <button type="button" class="btn btn-light" id="btn-change-mode">Dark mode</button>
+
+                    <select name="Lang" id="langChange" class="form-select w-25 mx-5">
+                        <option value="En">En</option>
+                        <option value="Az">Az</option>
+                    </select>
+
+                    <form class="d-flex" id="form-logout">
+                        <button type="submit" class="btn btn-warning">Log out</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+
+            <div class="mt-5 mb-5">
+                <h1>Credit score evaluation</h1>
+            </div>
+
+            <table class="table table-dark table-hover" id="user-table">
+                <thead id="table-head">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" data-key="table_column_image">Image</th>
+                        <th scope="col" data-key="table_column_fullname">Fullname</th>
+                        <th scope="col" data-key="table_column_salary">Monthly Salary</th>
+                        <th scope="col" data-key="table_column_total">Total Monthly pay</th>
+                        <th scope="col" data-key="table_column_active_loan">Active loan <input type="checkbox"
+                                name="active loan checkbox" id="check-active-loan" class="form-check-input mx-2"></th>
+                        <th scope="col" data-key="table_column_credit_permit">Can apply</th>
+                        <th scope="col"><input type="search" class="form-control" placeholder="ex: Kylie Robertson"
+                                id="search-input"></th>
+                    </tr>
+                </thead>
+                <tbody id="user-table-body">
+                </tbody>
+            </table>
+
+            <!-- Modal -->
+            <div class="modal fade" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" id="modal-header">
+
+                            <button type="button" class="close-modal btn btn-secondary btn-close" data-dismiss="modal"
+                                aria-label="Close">
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-dark table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" data-key="table_column_loaner">Loaner</th>
+                                        <th scope="col" data-key="table_column_amount">Amount</th>
+                                        <th scope="col" data-key="table_column_loan">Loan status</th>
+                                        <th scope="col" data-key="table_column_pay">Monthly pay</th>
+                                        <th scope="col" data-key="table_column_due">Due amount</th>
+                                        <th scope="col" data-key="table_column_start">Start date</th>
+                                        <th scope="col" data-key="table_column_end">End date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="details-table">
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="close-modal btn btn-secondary w-100"
+                                data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/Auth.js"></script>
+    <script src="assets/js/Logout.js"></script>
+    <script src="assets/js/App.js"></script>
+</body>
+
+</html>
